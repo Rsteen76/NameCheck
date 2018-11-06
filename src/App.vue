@@ -1,10 +1,11 @@
 <template>
-  <v-app>
-    <h1>This is where the content goes</h1>
-  </v-app>
+  <app>
+    <router-view></router-view>
+  </app>
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -13,3 +14,9 @@ export default {
   }
 }
 </script>
+<style>
+html, body {
+  height: 100vh;
+}
+</style>
+
