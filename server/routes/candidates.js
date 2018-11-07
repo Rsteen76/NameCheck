@@ -14,6 +14,7 @@ router.get('/', checkAuth, (req, res, next) => {
     } else {
       for (var i = 0; i < allCandidates.length; i++) {
         var nameData = {}
+        nameData._id = allCandidates[i]._id
         nameData.name = allCandidates[i].name
         nameData.isAvailable = allCandidates[i].isAvailable
         allCandidates[i].domains.forEach(domain => {
@@ -241,5 +242,17 @@ function createCandidate (candidate) {
     }
   })
 }
+
+router.delete('/:id', checkAuth, async (req, res) => {
+  await Candidate
+  .findByIdAndRemove(req.params.id)
+  .exec()
+    .then(() => {
+      res.status(204).json({ 'message': 'Success' })
+    })
+    .catch(err => {
+      res.status(500).json({err: err})
+    })
+})
 
 module.exports = router

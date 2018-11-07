@@ -1,97 +1,102 @@
 <template>
-<div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark py-">
-    <a href="/" class="navbar-brand py-0">Brandorium</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
+  <div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark py-">
+      <a href="/" class="navbar-brand py-0">Brandorium</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
+      </button>
+      <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link py-0" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link py-0" href="#">Admin</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link py-0" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link py-0" href="#" @click="logout">Logout</a>
+          </li>
         </ul>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="container-fluid">
- <table class="table table-hover text-center">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Available?</th>
-      <th scope="col">Domains</th>
-      <th scope="col">Social Sites</th>
-      <th scope="col">Buy Domains</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for= "candidate in candidates" :key= "candidate">
-      <td>{{ candidate.name }}</td>
-      <td><i :style='{ "color" : (candidate.isAvailable? "green" : "orange") }' class="fa fa-check-circle fa-sm"></i></td>
-      <td>
-        <tr>
-        <div>
-          <span :style='{ "color" : (candidate.dotcom? "green" : "red") }' class="mr-2"><strong>.com</strong></span>
-          <span :style='{ "color" : (candidate.dotnet? "green" : "red") }' class="mr-2"><strong>.net</strong></span>
-          <span :style='{ "color" : (candidate.dotorg? "green" : "red") }' class="mr-2"><strong>.org</strong></span>
-        </div>
-        </tr>
-        <tr>
-        <div class="form-check form-check-inline mr-3 ml-3">
-          <input :checked="candidate.dotcom" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline ml-3">
-          <input :checked="candidate.dotnet" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline ml-2">
-          <input :checked="candidate.dotorg" class="form-check-input" type="checkbox" disabled>
-        </div>
-        </tr>
-      </td>
-      <td>
-        <tr>
-        <div>
-          <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fa fa-facebook fa-xs mr-2"></i>
-          <i :style='{ "color" : (candidate.twitter? "green" : "red") }' class="fa fa-twitter fa-xs mr-2"></i>
-          <i :style='{ "color" : (candidate.instagram? "green" : "red") }' class="fa fa-instagram fa-xs mr-2"></i>
-          <i :style='{ "color" : (candidate.google? "green" : "red") }' class="fa fa-google fa-xs mr-2"></i>
-          <i :style='{ "color" : (candidate.youtube? "green" : "red") }' class="fa fa-youtube fa-xs mr-2"></i>
-          <i :style='{ "color" : (candidate.slack? "green" : "red") }' class="fa fa-slack fa-xs mr-2"></i>
-        </div>
-        </tr>
-        <tr>
-        <div class="form-check form-check-inline mr-2">
-          <input :checked="candidate.facebook" id="facebook" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div  class="form-check form-check-inline mr-2.5">
-          <input :checked="candidate.twitter" id="twitter" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline mr-2">
-          <input :checked="candidate.instagram" id="instagram" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline mr-2.5">
-          <input :checked="candidate.google" id="google" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline mr-2.5">
-          <input :checked="candidate.youtube" id="youtube" class="form-check-input" type="checkbox" disabled>
-        </div>
-        <div class="form-check form-check-inline mr-1">
-          <input :checked="candidate.slack" id="slack" class="form-check-input danger" type="checkbox" disabled>
-        </div>
-        </tr>
-      </td>
-      <td>
-        <button class="btn btn-sm btn-secondary">Purchase</button>
-        </td>
-    </tr>
-  </tbody>
-</table> 
-</div>
-</div>
+    <div class="container-fluid">
+      <b-modal id="modal1" title="Delete Item" ok-variant="danger">
+        <div slot="modal-ok">Delete</div>
+        <p class="my-4">Are you sure you want to delet this name?</p>
+      </b-modal>
+      <table class="table table-sm table-hover mx-auto">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th class="text-center" scope="col">Available?</th>
+            <th scope="col">Domains</th>
+            <th scope="col">Social Sites</th>
+            <th class="text-center" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="candidate in candidates" :key="candidate">
+            <td class="align-middle">{{ candidate.name }}</td>
+            <td class="align-middle text-center"><i :style='{ "color" : (candidate.isAvailable? "green" : "orange") }' class="fa fa-check-circle fa-sm"></i></td>
+            <td class="text-center">
+            <tr>
+                <span :style='{ "color" : (candidate.dotcom? "green" : "red") }' class="mr-3"><strong>.com</strong></span>
+                <span :style='{ "color" : (candidate.dotnet? "green" : "red") }' class="mr-3"><strong>.net</strong></span>
+                <span :style='{ "color" : (candidate.dotorg? "green" : "red") }' class="mr-2"><strong>.org</strong></span>
+            </tr>
+            <tr>
+              <div class="form-check form-check-inline mr-3 ml-3">
+                <input :checked="candidate.dotcom" class="form-check-input" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline ml-3">
+                <input :checked="candidate.dotnet" class="form-check-input" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline ml-3">
+                <input :checked="candidate.dotorg" class="form-check-input" type="checkbox" disabled>
+              </div>
+            </tr>
+          </td>
+          <td class="text-center">
+            <div>
+            <tr>
+                <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fab fa-facebook fa-xs spacer"></i>
+                <i :style='{ "color" : (candidate.twitter? "green" : "red") }' class="fab fa-twitter fa-xs spacer"></i>
+                <i :style='{ "color" : (candidate.instagram? "green" : "red") }' class="fab fa-instagram fa-xs spacer"></i>
+                <i :style='{ "color" : (candidate.google? "green" : "red") }' class="fab fa-google fa-xs spacer"></i>
+                <i :style='{ "color" : (candidate.youtube? "green" : "red") }' class="fab fa-youtube fa-xs spacer"></i>
+                <i :style='{ "color" : (candidate.slack? "green" : "red") }' class="fab fa-slack fa-xs spacer"></i>
+            </tr>
+            <tr>
+              <div class="checks form-check form-check-inline mr-auto spacer">
+                <input :checked="candidate.facebook" id="facebook" class="form-check-input mx-auto" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline m-0 p-0 spacer">
+                <input :checked="candidate.twitter" id="twitter" class="form-check-input mx-auto" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline m-0 p-0 spacer">
+                <input :checked="candidate.instagram" id="instagram" class="form-check-input mx-auto" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline m-0 p-0 spacer">
+                <input :checked="candidate.google" id="google" class="form-check-input mx-auto" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline m-0 p-0 spacer">
+                <input :checked="candidate.youtube" id="youtube" class="form-check-input mx-auto" type="checkbox" disabled>
+              </div>
+              <div class="form-check form-check-inline m-0 p-0 spacer">
+                <input :checked="candidate.slack" id="slack" class="form-check-input danger mx-auto" type="checkbox" disabled>
+              </div>
+            </tr>
+            </div>
+          </td>
+          <td class="align-middle text-center">
+              <div>
+                <i class="fa fa-dollar-sign mr-3"></i>
+                <i @click="deleteName(candidate._id)" class="fa fa-trash" style="color: red;"></i>
+              </div>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -123,17 +128,54 @@ export default {
           .catch(e => {
               this.errors.push(e);
           });
-      }
+      },
+    deleteName(id) {
+      this.$swal({
+        text: 'Are you sure you want to delete the name?',
+        type: 'warning',
+        showCancelButton: 'true'
+      }) .then((result) => {
+        if(result.value) {
+          http
+          .delete("/candidates/" + id, { headers: { 'Authorization': 'Bearer ' + localStorage.auth }})
+          .then(response => {
+             console.log('Name Deleted')
+          })
+          .catch(e => {
+            this.$swal({
+              type: 'error',
+              text: `Sorry, ${e}`})
+          })
+      this.$router.go({
+        name: '/admin'
+        })
+        }
+      })
     },
-    checkAvailable() {
-
+    logout() {
+      localStorage.clear()
+      console.log("Logging Out")
+      this.$router.go({
+        name: 'nameSearch'
+      })
     },
+  },
   created() {
-    this.load()
+  this.load()
   }
 }
 </script>
 <style scoped>
+.fa-trash {
+  cursor: pointer;
+}
+.fa-dollar-sign {
+  cursor: pointer;
+}
+.spacer {
+  width: 40px;
+}
+
 
 </style>
 
