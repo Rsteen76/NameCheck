@@ -56,6 +56,8 @@ router.get('/', (req, res, next) => {
         candidates.push(nameData)
       }
     }
+    console.log(candidates)
+
     res.send({
       candidates
     })

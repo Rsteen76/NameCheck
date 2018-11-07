@@ -73,7 +73,8 @@ import axios from 'axios'
           //Clear input
           this.newIdea=""  
           //Send request to see what domains and social sites are available
-          axios.post('http://localhost:8080/api/candidates/namecheck', {name: name})
+          http 
+          .post('/api/candidates/namecheck', {name: name})
           .then(response => {
             //Check response and change color if available
             console.log(response.data)

@@ -24,13 +24,13 @@
         </tr>
         <tr>
         <div class="form-check form-check-inline mr-3 ml-2">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.dotcom" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline ml-3">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.dotnet" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline ml-2">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.dotorg" class="form-check-input" type="checkbox" disabled>
         </div>
         </tr>
       </td>
@@ -47,22 +47,22 @@
         </tr>
         <tr>
         <div class="form-check form-check-inline mr-2">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.facebook" id="facebook" class="form-check-input" type="checkbox" disabled>
         </div>
-        <div class="form-check form-check-inline mr-2.5">
-          <input class="form-check-input" type="checkbox">
+        <div  class="form-check form-check-inline mr-2.5">
+          <input :checked="candidate.twitter" id="twitter" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline mr-2">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.instagram" id="instagram" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline mr-2.5">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.google" id="google" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline mr-2.5">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.youtube" id="youtube" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline mr-1">
-          <input class="form-check-input" type="checkbox">
+          <input :checked="candidate.slack" id="slack" class="reg-check form-check-input" type="checkbox" disabled>
         </div>
         </tr>
       </td>
@@ -106,10 +106,20 @@ export default {
           });
       }
     },
+    checkAvailable() {
+
+    },
   created() {
     this.load()
   }
 }
 </script>
+<style scoped>
+.reg-check:checked {
+  background-color: green;
+}
+</style>
+
+
   
 
