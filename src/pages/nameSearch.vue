@@ -81,7 +81,7 @@ export default {
           this.newIdea=""  
           //Send request to see what domains and social sites are available
           http 
-          .post('/api/candidates/namecheck', {name: name})
+          .post('/candidates/namecheck', {name: name})
           .then(response => {
             //Check response and change color if available
             console.log(response.data)
