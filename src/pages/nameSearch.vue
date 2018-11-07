@@ -56,8 +56,9 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
-    export default {
+import { http } from "@/config/http.js";
+
+export default {
       data: () => ({
         auth: localStorage.auth,
         nameColor: 'red',
