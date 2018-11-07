@@ -15,6 +15,8 @@ export default {
 <style>
 html, body {
   height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+
 }
 </style>
 

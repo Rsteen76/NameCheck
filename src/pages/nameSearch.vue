@@ -50,8 +50,10 @@
     <div v-if="!auth">
     <router-link style="z-index:10;" class="fixed-bottom nav-link" to='/login'>Login</router-link>
     </div>
-    <div v-if="auth">
-    <a style="z-index:10;" class="fixed-bottom nav-link" href="#" @click="logout">Logout</a>
+    <div v-if="auth" class="fixed-bottom">
+      <a style="z-index:10;" class="nav-link d-inline" href="#" @click="logout">Logout</a>
+      <a style="z-index:10;" class="nav-link d-inline" href="#" to="/admin"><router-link to="/admin">Admin</router-link></a>
+
     </div>
   </div>
 </template>
@@ -106,18 +108,6 @@ export default {
             }
           })
         },
-        //Write to database
-        // submit(name) {
-        //   console.log(name)
-        //   axios.post('https://floating-shore-43899.herokuapp.com/candidates', {name: name})
-        //     .then(response => {
-        //       console.log(response.data)
-        //     })
-        //     .catch(e => {
-        //       console.log("failed")
-        //     })
-        // },
-        //Cleanup user input
         filteredIdea() {
           this.newIdea = this.newIdea.toLowerCase();
           this.newIdea = this.newIdea.replace(/\s/g,"")

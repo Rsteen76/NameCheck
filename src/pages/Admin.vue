@@ -1,10 +1,28 @@
 <template>
+<div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-">
+    <a href="/" class="navbar-brand py-0">Brandorium</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link py-0" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link py-0" href="#">Admin</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container-fluid">
- <table class="table table-hover">
+ <table class="table table-hover text-center">
   <thead>
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Is Available?</th>
+      <th scope="col">Available?</th>
       <th scope="col">Domains</th>
       <th scope="col">Social Sites</th>
       <th scope="col">Buy Domains</th>
@@ -13,17 +31,17 @@
   <tbody>
     <tr v-for= "candidate in candidates" :key= "candidate">
       <td>{{ candidate.name }}</td>
-      <td>{{ candidate.isAvailable }}</td>
+      <td><i :style='{ "color" : (candidate.isAvailable? "green" : "orange") }' class="fa fa-check-circle fa-sm"></i></td>
       <td>
         <tr>
         <div>
-          <i class="mr-2">.com</i>
-          <i class="mr-2">.net</i>
-          <i class="mr-2">.org</i>
+          <span :style='{ "color" : (candidate.dotcom? "green" : "red") }' class="mr-2"><strong>.com</strong></span>
+          <span :style='{ "color" : (candidate.dotnet? "green" : "red") }' class="mr-2"><strong>.net</strong></span>
+          <span :style='{ "color" : (candidate.dotorg? "green" : "red") }' class="mr-2"><strong>.org</strong></span>
         </div>
         </tr>
         <tr>
-        <div class="form-check form-check-inline mr-3 ml-2">
+        <div class="form-check form-check-inline mr-3 ml-3">
           <input :checked="candidate.dotcom" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline ml-3">
@@ -37,12 +55,12 @@
       <td>
         <tr>
         <div>
-          <i class="fa fa-facebook fa-xs mr-2"></i>
-          <i class="fa fa-twitter fa-xs mr-2"></i>
-          <i class="fa fa-instagram fa-xs mr-2"></i>
-          <i class="fa fa-google fa-xs mr-2"></i>
-          <i class="fa fa-youtube fa-xs mr-2"></i>
-          <i class="fa fa-slack fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fa fa-facebook fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.twitter? "green" : "red") }' class="fa fa-twitter fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.instagram? "green" : "red") }' class="fa fa-instagram fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.google? "green" : "red") }' class="fa fa-google fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.youtube? "green" : "red") }' class="fa fa-youtube fa-xs mr-2"></i>
+          <i :style='{ "color" : (candidate.slack? "green" : "red") }' class="fa fa-slack fa-xs mr-2"></i>
         </div>
         </tr>
         <tr>
@@ -73,7 +91,7 @@
   </tbody>
 </table> 
 </div>
-
+</div>
 </template>
 
 <script>
@@ -82,6 +100,7 @@ import { http } from "../config/http.js"
 export default {
   data () {
     return {
+      isAvailable: {color: 'red'},
       candidates: [],
       sortBy: 'isAvailable',
       sortDesc: false,
@@ -115,10 +134,7 @@ export default {
 }
 </script>
 <style scoped>
-input[type=checkbox]:disabled:checked + label {
-  color: #f00 !important;
-  font-style: normal;
-} 
+
 </style>
 
 
