@@ -4,19 +4,63 @@ var router = express.Router()
 var Candidate = require('../models/Candidate')
 const Unirest = require('unirest')
 
-/* GET users listing. */
+/* GET Candidates */
 router.get('/', (req, res, next) => {
+  var candidates = []
   Candidate.find({}, (err, allCandidates) => {
     if (err) {
       console.log(err)
     } else {
-      res.send({
-        candidates: allCandidates
-      })
+      for (var i = 0; i < allCandidates.length; i++) {
+        var nameData = {}
+        nameData.name = allCandidates[i].name
+        nameData.isAvailable = allCandidates[i].isAvailable
+        allCandidates[i].domains.forEach(domain => {
+          switch (domain.domain.slice(-4)) {
+            case '.com':
+              nameData.dotcom = domain.available
+              break
+            case '.org':
+              nameData.dotorg = domain.available
+              break
+            case '.net':
+              nameData.dotnet = domain.available
+              break
+          }
+        })
+        allCandidates[i].socialSites.forEach(socialSite => {
+          switch (true) {
+            case socialSite.callback_url.includes('google'):
+              nameData.google = socialSite.available
+              break
+            case socialSite.callback_url.includes('facebook'):
+              nameData.facebook = socialSite.available
+              break
+            case socialSite.callback_url.includes('instagram'):
+              nameData.instagram = socialSite.available
+              break
+            case socialSite.callback_url.includes('slack'):
+              nameData.slack = socialSite.available
+              break
+            case socialSite.callback_url.includes('twitter'):
+              nameData.twitter = socialSite.available
+              break
+            case socialSite.callback_url.includes('youtube'):
+              nameData.youtube = socialSite.available
+              break
+            default:
+              break
+          }
+        })
+
+        candidates.push(nameData)
+      }
     }
+    res.send({
+      candidates
+    })
   })
 })
-
 // router.post('/', function (req, res, next) {
 //   var newName = req.body.name
 //   console.log(newName)

@@ -4,12 +4,14 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
+import VueSwal from 'vue-swal'
 // import Vuetify from 'vuetify'
 // import 'vuetify/dist/vuetify.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
+Vue.use(VueSwal)
 // Vue.use(Vuetify, { theme: {
 //   primary: '#ee44aa',
 //   secondary: '#424242',

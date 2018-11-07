@@ -50,7 +50,7 @@ export default {
           localStorage.setItem("auth", response.data.token);
           localStorage.setItem("name", response.data.name);
           this.$swal("Great!", "You are ready to start!", "success");
-          this.$router.push({ name: "greentree" });
+          this.$router.push({ name: "admin" });
         })
         .catch(error => {
           console.log(error);

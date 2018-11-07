@@ -20,7 +20,6 @@ exports.register = async (req, res) => {
           })
         } else {
           const newUser = new User({
-            name: req.body.name,
             email: req.body.email,
             password: hash
           })
@@ -65,7 +64,7 @@ exports.login = async (req, res) => {
           if (result) {
             const token = jwt.sign(
               {
-                name: user[0].name
+                email: user[0].email
               },
               process.env.SECRET,
               {
@@ -75,7 +74,7 @@ exports.login = async (req, res) => {
             return res.status(200).send({
               message: 'Login Successful',
               token: token,
-              name: user[0].name
+              email: user[0].email
             })
           }
           return res.status(401).json({
