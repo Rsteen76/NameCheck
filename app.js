@@ -6,9 +6,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 var cors = require('cors')
 require('dotenv').config()
-// Require route files
-// var room = require('./routes/room');
-// var chat = require('./routes/chat');
+
 var app = express()
 app.use(cors())
 
