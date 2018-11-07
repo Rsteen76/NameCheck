@@ -7,6 +7,7 @@
       <th scope="col">Is Available?</th>
       <th scope="col">Domains</th>
       <th scope="col">Social Sites</th>
+      <th scope="col">Buy Domains</th>
     </tr>
   </thead>
   <tbody>
@@ -65,6 +66,9 @@
         </div>
         </tr>
       </td>
+      <td>
+        <button class="btn btn-sm btn-secondary">Purchase</button>
+        </td>
     </tr>
   </tbody>
 </table> 
