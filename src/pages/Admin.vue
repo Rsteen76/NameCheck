@@ -62,7 +62,7 @@
           <input :checked="candidate.youtube" id="youtube" class="form-check-input" type="checkbox" disabled>
         </div>
         <div class="form-check form-check-inline mr-1">
-          <input :checked="candidate.slack" id="slack" class="reg-check form-check-input" type="checkbox" disabled>
+          <input :checked="candidate.slack" id="slack" class="form-check-input danger" type="checkbox" disabled>
         </div>
         </tr>
       </td>
@@ -97,7 +97,7 @@ export default {
   methods: {
     load() {
       http
-          .get("candidates")
+          .get("candidates", { headers: { 'Authorization': 'Bearer ' + localStorage.auth }})
           .then(response => {
             this.candidates = response.data.candidates
           })
@@ -115,9 +115,10 @@ export default {
 }
 </script>
 <style scoped>
-.reg-check:checked {
-  background-color: green;
-}
+input[type=checkbox]:disabled:checked + label {
+  color: #f00 !important;
+  font-style: normal;
+} 
 </style>
 
 

@@ -1,11 +1,12 @@
 /* eslint-disable eqeqeq */
 var express = require('express')
 var router = express.Router()
+var checkAuth = require('../middleware/check-auth')
 var Candidate = require('../models/Candidate')
 const Unirest = require('unirest')
 
 /* GET Candidates */
-router.get('/', (req, res, next) => {
+router.get('/', checkAuth, (req, res, next) => {
   var candidates = []
   Candidate.find({}, (err, allCandidates) => {
     if (err) {

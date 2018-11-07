@@ -47,13 +47,19 @@
         </div>
       </div>
     </div>
+    <div v-if="!auth">
     <router-link style="z-index:10;" class="fixed-bottom nav-link" to='/login'>Login</router-link>
+    </div>
+    <div v-if="auth">
+    <a style="z-index:10;" class="fixed-bottom nav-link" href="#" @click="logout">Logout</a>
+    </div>
   </div>
 </template>
 <script>
 import axios from 'axios'
     export default {
       data: () => ({
+        auth: localStorage.auth,
         nameColor: 'red',
         pageError: false,
         ideas: [],
@@ -117,6 +123,12 @@ import axios from 'axios'
           this.newIdea = this.newIdea.replace(/(\.com|\.net|\.org|\.info|\.coop|\.int|\.io)/g, '') 
           this.newIdea = this.newIdea.replace(/[.*+?^${}@;#!%&~`()|[\]\\]/g, '')
           return this.newIdea
+        },
+        logout() {
+          localStorage.clear()
+          this.$router.go({
+            name: '/'
+          })
         }
       }
     }
