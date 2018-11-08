@@ -5,22 +5,12 @@ import BootstrapVue from 'bootstrap-vue'
 import App from './App'
 import router from './router'
 import VueSweetalert2 from 'vue-sweetalert2';
-// import Vuetify from 'vuetify'
-// import 'vuetify/dist/vuetify.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VueSweetalert2)
-// Vue.use(Vuetify, { theme: {
-//   primary: '#ee44aa',
-//   secondary: '#424242',
-//   accent: '#82B1FF',
-//   error: '#FF5252',
-//   info: '#2196F3',
-//   success: '#4CAF50',
-//   warning: '#FFC107'
-// }})
+
 
 Vue.config.productionTip = false
 

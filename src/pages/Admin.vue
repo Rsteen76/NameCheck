@@ -1,17 +1,19 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark py-">
-      <a href="/" class="navbar-brand py-0">Brandorium</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-">
+      <a href="/" class="navbar-brand">Brandaur</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse justify-content-stretch" id="navbar7">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link py-0" href="/">Home</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link py-0" href="#" @click="logout">Logout</a>
+            <a class="nav-link" href="#" @click="logout">Logout</a>
           </li>
         </ul>
       </div>
@@ -22,7 +24,8 @@
         <div slot="modal-ok">Delete</div>
         <p class="my-4">Are you sure you want to delet this name?</p>
       </b-modal>
-      <table class="table table-sm table-hover mx-auto">
+      <div class="table-responsive">
+      <table class="table table-sm table-hover text-center">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -36,7 +39,7 @@
           <tr v-for="candidate in candidates" :key="candidate">
             <td class="align-middle">{{ candidate.name }}</td>
             <td class="align-middle text-center"><i :style='{ "color" : (candidate.isAvailable? "green" : "orange") }' class="fa fa-check-circle fa-sm"></i></td>
-            <td class="text-center">
+            <td style="text-align: -webkit-center; text-align: -moz-center;">
             <tr>
                 <span :style='{ "color" : (candidate.dotcom? "green" : "red") }' class="mr-3"><strong>.com</strong></span>
                 <span :style='{ "color" : (candidate.dotnet? "green" : "red") }' class="mr-3"><strong>.net</strong></span>
@@ -54,37 +57,42 @@
               </div>
             </tr>
           </td>
-          <td class="text-center">
-            <div>
+          <td style="text-align: -webkit-center; text-align: -moz-center;">
             <tr>
-                <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fab fa-facebook fa-xs spacer"></i>
-                <i :style='{ "color" : (candidate.twitter? "green" : "red") }' class="fab fa-twitter fa-xs spacer"></i>
-                <i :style='{ "color" : (candidate.instagram? "green" : "red") }' class="fab fa-instagram fa-xs spacer"></i>
-                <i :style='{ "color" : (candidate.google? "green" : "red") }' class="fab fa-google fa-xs spacer"></i>
-                <i :style='{ "color" : (candidate.youtube? "green" : "red") }' class="fab fa-youtube fa-xs spacer"></i>
-                <i :style='{ "color" : (candidate.slack? "green" : "red") }' class="fab fa-slack fa-xs spacer"></i>
-            </tr>
+              <div class="form-check form-check-inline spacer text-center">
+                <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fab fa-facebook fa-xs"></i>
+              </div>
+               <div class="form-check form-check-inline spacer text-center"> <i :style='{ "color" : (candidate.twitter? "green" : "red") }' class="fab fa-twitter fa-xs"></i>
+              </div>
+               <div class="form-check form-check-inline spacer text-center"> <i :style='{ "color" : (candidate.instagram? "green" : "red") }' class="fab fa-instagram fa-xs"></i>
+              </div>
+              <div class="form-check form-check-inline spacer  text-center">  <i :style='{ "color" : (candidate.google? "green" : "red") }' class="fab fa-google fa-xs"></i>
+              </div>
+              <div class="form-check form-check-inline spacer  text-center">  <i :style='{ "color" : (candidate.youtube? "green" : "red") }' class="fab fa-youtube fa-xs text-center"></i>
+              </div>
+              <div class="form-check form-check-inline spacer  text-center">  <i :style='{ "color" : (candidate.slack? "green" : "red") }' class="fab fa-slack fa-xs text-center"></i>
+              </div>
+             </tr>
             <tr>
-              <div class="checks form-check form-check-inline mr-auto spacer">
-                <input :checked="candidate.facebook" id="facebook" class="form-check-input mx-auto" type="checkbox" disabled>
+              <div class="checks form-check form-check-inline spacer">
+                <input :checked="candidate.facebook" id="facebook" class="form-check-input" type="checkbox" disabled>
               </div>
-              <div class="form-check form-check-inline m-0 p-0 spacer">
-                <input :checked="candidate.twitter" id="twitter" class="form-check-input mx-auto" type="checkbox" disabled>
+              <div class="form-check form-check-inline spacer">
+                <input :checked="candidate.twitter" id="twitter" class="form-check-input" type="checkbox" disabled>
               </div>
-              <div class="form-check form-check-inline m-0 p-0 spacer">
-                <input :checked="candidate.instagram" id="instagram" class="form-check-input mx-auto" type="checkbox" disabled>
+              <div class="form-check form-check-inline spacer">
+                <input :checked="candidate.instagram" id="instagram" class="form-check-input" type="checkbox" disabled>
               </div>
-              <div class="form-check form-check-inline m-0 p-0 spacer">
-                <input :checked="candidate.google" id="google" class="form-check-input mx-auto" type="checkbox" disabled>
+              <div class="form-check form-check-inline spacer">
+                <input :checked="candidate.google" id="google" class="form-check-input" type="checkbox" disabled>
               </div>
-              <div class="form-check form-check-inline m-0 p-0 spacer">
-                <input :checked="candidate.youtube" id="youtube" class="form-check-input mx-auto" type="checkbox" disabled>
+              <div class="form-check form-check-inline spacer">
+                <input :checked="candidate.youtube" id="youtube" class="form-check-input" type="checkbox" disabled>
               </div>
-              <div class="form-check form-check-inline m-0 p-0 spacer">
-                <input :checked="candidate.slack" id="slack" class="form-check-input danger mx-auto" type="checkbox" disabled>
+              <div class="form-check form-check-inline spacer">
+                <input :checked="candidate.slack" id="slack" class="form-check-input" type="checkbox" disabled>
               </div>
             </tr>
-            </div>
           </td>
           <td class="align-middle text-center">
               <div>
@@ -95,6 +103,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </template>
@@ -173,7 +182,7 @@ export default {
   cursor: pointer;
 }
 .spacer {
-  width: 40px;
+  width: 15px;
 }
 
 

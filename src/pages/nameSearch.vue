@@ -2,7 +2,7 @@
   <div class="container-fluid h-100">
     
     <div class="text-center">
-      <h2 class="animated bounceIn mt-4 mb-4">Brandorium</h2>
+      <h2 class="animated bounceIn mt-4 mb-4">Brandaur</h2>
     </div>
     <div v-if="pageError" class="container-fluid text-center">
       <h1>There seems to be a problem with the service!</h1>
