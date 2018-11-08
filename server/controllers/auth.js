@@ -45,6 +45,7 @@ exports.register = async (req, res) => {
   // login a user
 exports.login = async (req, res) => {
   console.log('Loggin In')
+  console.log('Body '+ req.body)
   User.find({
     email: req.body.email
   })

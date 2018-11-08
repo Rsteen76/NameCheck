@@ -13,6 +13,7 @@
     <b-form-input
       label="Password"
       v-model="user.password"
+      type="password"
       required
     ></b-form-input>
     </b-form-group>
