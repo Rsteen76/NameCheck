@@ -2,8 +2,10 @@
 // import the controller as a single module, or an explicit constant later!!!
 const usersController = require('./users')
 const authController = require('./auth')
+const candidatesController = require('./candidates')
 
 module.exports = {
   usersController,
-  authController
+  authController,
+  candidatesController
 }
