@@ -140,7 +140,7 @@ router.post('/namecheck', async function (req, res, next) {
       for (var i = 0; i < domains.length; i++) {
         if (domains[i].available == false) {
           falseDomains++
-          // Flag if the .com is available
+          // Flag if the .com is not available
           if (domains[i].domain == name + '.com') {
             dotcom = false
           }
@@ -197,7 +197,7 @@ router.post('/namecheck', async function (req, res, next) {
     if (falseDomains < 2 || falseSocial < 2) {
       // Could be a yes or a maybe
       if (falseDomains == 1) {
-        if (dotcom == false) {
+        if (dotcom == true) {
           if (falseSocial < 2) {
             triage = 'maybe'
           }
