@@ -1,11 +1,12 @@
 var express = require('express');
+require('dotenv').config()
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose')
 var cors = require('cors')
-require('dotenv').config()
+
 
 var app = express()
 app.use(cors())

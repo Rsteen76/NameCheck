@@ -74,11 +74,12 @@ exports.nameCheck = async (req, res, next) => {
 
   // Check domain availabilty
   async function getDomains (callback) {
+    var godaddyAPIKEY = process.env.GODADDYAPI
     await new Promise((resolve) => {
       var url = 'https://api.godaddy.com/v1/domains/available?checkType=FAST'
       Unirest.post(url)
         .headers({
-          'Authorization': 'sso-key e42XEN9ebVDq_RpCxjAeu1hrBixYT3vm8so:RpD6CHYYdtyw1n11ZKWXmP',
+          'Authorization': 'sso-key ' + godaddyAPIKEY,
           'Content-Type': 'application/json'
         })
         .send([
@@ -128,12 +129,14 @@ exports.nameCheck = async (req, res, next) => {
 
       // Check Usename availabitliy
       let requests = sitenames.map((sitename) => {
+        var nameCheckAPIKEY = process.env.NAMECHECKAPI
         return new Promise((resolve) => {
           Unirest.post('https://api.namechk.com/services/check.json')
             .headers({
-              'AUTHORIZATION': 'Bearer UMcLbvy2UARLngzqMTchIQ',
+              'AUTHORIZATION': 'Bearer ' + nameCheckAPIKEY,
               'Accept': 'application/vnd.api.v1+json'
-            }).send({
+            })
+            .send({
               'site': sitename,
               username: name
             }).end(function (response) {
