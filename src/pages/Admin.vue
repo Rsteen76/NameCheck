@@ -39,7 +39,7 @@
           <tr v-for="candidate in candidates" :key="candidate">
             <td class="align-middle">{{ candidate.name }}</td>
             <td class="align-middle text-center"><i :style='{ "color" : (candidate.isAvailable? "green" : "orange") }' class="fa fa-check-circle fa-sm"></i></td>
-            <td style="text-align: -webkit-center; text-align: -moz-center;">
+            <td class="force-center">
             <tr>
                 <span :style='{ "color" : (candidate.dotcom? "green" : "red") }' class="mr-3"><strong>.com</strong></span>
                 <span :style='{ "color" : (candidate.dotnet? "green" : "red") }' class="mr-3"><strong>.net</strong></span>
@@ -57,7 +57,7 @@
               </div>
             </tr>
           </td>
-          <td style="text-align: -webkit-center; text-align: -moz-center;">
+          <td class="force-center">
             <tr>
               <div class="form-check form-check-inline spacer text-center">
                 <i :style='{ "color" : (candidate.facebook? "green" : "red") }' class="fab fa-facebook fa-xs"></i>
@@ -183,6 +183,10 @@ export default {
 }
 .spacer {
   width: 15px;
+}
+.force-center {
+  text-align: -webkit-center; 
+  text-align: -moz-center;
 }
 
 

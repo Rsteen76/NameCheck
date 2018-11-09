@@ -137,6 +137,7 @@ exports.nameCheck = async (req, res, next) => {
               'site': sitename,
               username: name
             }).end(function (response) {
+              console.log(response.body.available)
               if (response.body.available == false) {
                 falseSocial++
               }
@@ -155,16 +156,17 @@ exports.nameCheck = async (req, res, next) => {
   function finalCheck () {
     console.log('Start finalCheck')
     console.log(userNamesAvailable)
-    console.log(counter)
-    console.log(dotcom)
+    console.log(falseSocial + ' FalseSocial')
+    console.log(falseDomains + ' FalseDomains')
+    console.log(dotcom + ' Dotcom Available')
 
     // Default domain desireablilty to no
     var triage = 'no'
 
-    if (falseDomains < 2 || falseSocial < 2) {
+    if (falseDomains < 2 && falseSocial < 2) {
       // Could be a yes or a maybe
       if (falseDomains == 1) {
-        if (dotcom == true) {
+        if (dotcom == false) {
           if (falseSocial < 2) {
             triage = 'maybe'
           }
